@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -ex
 
-#START_COMMAND="google-chrome"
-#PGREP="chrome"
-#MAXIMIZE="true"
+START_COMMAND="google-chrome"
+PGREP="chrome"
+MAXIMIZE="true"
 DEFAULT_ARGS=""
 
 if [[ $MAXIMIZE == 'true' ]] ; then
@@ -58,29 +58,9 @@ kasm_startup() {
     fi
 
     if [ -z "$DISABLE_CUSTOM_STARTUP" ] ||  [ -n "$FORCE" ] ; then
-
-        echo "Entering process startup loop"
-        set +x
-        while true
-        do
-            if ! pgrep -x $PGREP > /dev/null
-            then
-                /usr/bin/filter_ready
-                /usr/bin/desktop_ready
-sudo -E /dockerstartup/twingate_init.sh
-#                /usr/bin/twingate desktop-start
-#                /usr/bin/twingate start
-                sleep 5s
-#                URL=`twingate status | grep "https*"`
-#                echo "Twingate URL Set to $URL"
-                set +e
-                $START_COMMAND $ARGS $URL
-                set -e
-            fi
-            sleep 1
-        done
-        set -x
-    
+        /usr/bin/filter_ready
+        /usr/bin/desktop_ready
+        sudo -E /dockerstartup/twingate_init.sh
     fi
 
 } 
