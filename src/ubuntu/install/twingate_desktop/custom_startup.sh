@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -ex
 
-START_COMMAND="google-chrome"
-PGREP="chrome"
-MAXIMIZE="true"
+#START_COMMAND="google-chrome"
+#PGREP="chrome"
+#MAXIMIZE="true"
 DEFAULT_ARGS=""
 
 if [[ $MAXIMIZE == 'true' ]] ; then
