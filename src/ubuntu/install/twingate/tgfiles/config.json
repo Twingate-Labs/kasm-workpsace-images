@@ -1,0 +1,10 @@
+{
+    "sdwan": {
+        "loglevel": 7,
+        "loglevel_console": 7
+    },
+    "controller": {
+        "token":
+            _TOKEN_
+    }
+}
