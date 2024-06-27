@@ -36,9 +36,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 #                  /ubuntu/install/gamepad_utils/install_gamepad_utils.sh \
 #                  /ubuntu/install/twingate/install_twingate.sh \
 #                  /ubuntu/install/cleanup/cleanup.sh"
-    INST_SCRIPTS="/ubuntu/install/chrome/install_chrome.sh \
-                  /ubuntu/install/remmina/install_remmina.sh \
-                  /ubuntu/install/twingate/install_twingate.sh \
+    INST_SCRIPTS="/ubuntu/install/twingate/install_twingate.sh \
                   /ubuntu/install/cleanup/cleanup.sh"
 
 # Copy install scripts
