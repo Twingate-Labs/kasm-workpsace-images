@@ -38,7 +38,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 #                  /ubuntu/install/cleanup/cleanup.sh"
     INST_SCRIPTS="/ubuntu/install/tools/install_tools_deluxe.sh \
                   /ubuntu/install/misc/install_tools.sh \
-                  /ubuntu/install/chrome/install_chrome.sh \"
+                  /ubuntu/install/chrome/install_chrome.sh"
 
 # Copy install scripts
 COPY ./src/ $INST_DIR
