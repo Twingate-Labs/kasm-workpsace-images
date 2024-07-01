@@ -38,7 +38,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
                   /ubuntu/install/terraform/install_terraform.sh \
                   /ubuntu/install/dbeaver/install_dbeaver.sh \
                   /ubuntu/install/postman/install_postman.sh \
-                  /ubuntu/install/postman/install_neovim.sh \
+                  /ubuntu/install/neovim/install_neovim.sh \
                   /ubuntu/install/cleanup/cleanup.sh"
 #    INST_SCRIPTS="/ubuntu/install/tools/install_tools_deluxe.sh \
 #                  /ubuntu/install/misc/install_tools.sh \
