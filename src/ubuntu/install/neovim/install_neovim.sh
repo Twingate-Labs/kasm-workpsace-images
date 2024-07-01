@@ -2,7 +2,8 @@
 set -ex
 
 # Install neovim
-sudo apt install neovim
+sudo apt update
+sudo apt install neovim -y
 
 
 # Cleanup for app layer
