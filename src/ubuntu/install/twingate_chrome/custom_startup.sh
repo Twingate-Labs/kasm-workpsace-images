@@ -75,13 +75,17 @@ sudo -E /dockerstartup/twingate_init.sh
                 set +e
                 $START_COMMAND $ARGS $URL
                 set -e
+                # setup agent custom startup script
                 if [ -f /agentless_custom_script/twingate_chrome_startup.sh ]; then
                     sudo cp /agentless_custom_script/twingate_chrome_startup.sh /dockerstartup/
                     sudo bash /dockerstartup/twingate_chrome_startup.sh
                 fi
+                # install and setup p11 so chrome uses system CA
                 sudo apt update
                 sudo apt install -y p11-kit p11-kit-modules
-                ln -s -f /usr/lib/x86_64-linux-gnu/pkcs11/p11-kit-trust.so /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so
+                sudo ln -s -f /usr/lib/x86_64-linux-gnu/pkcs11/p11-kit-trust.so /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so
+                # update the ca certificate, so agent mounted cert are used
+                sudo update-ca-certificates
             fi
             sleep 1
         done
