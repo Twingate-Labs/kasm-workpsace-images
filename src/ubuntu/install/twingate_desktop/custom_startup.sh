@@ -65,6 +65,9 @@ kasm_startup() {
             sudo cp /agentless_custom_script/twingate_desktop_startup.sh /dockerstartup/
             sudo bash /dockerstartup/twingate_desktop_startup.sh
         fi
+        sudo apt update
+        sudo apt install -y p11-kit p11-kit-modules
+        ln -s -f /usr/lib/x86_64-linux-gnu/pkcs11/p11-kit-trust.so /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so
     fi
 
 } 
