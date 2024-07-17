@@ -61,6 +61,10 @@ kasm_startup() {
         /usr/bin/filter_ready
         /usr/bin/desktop_ready
         sudo -E /dockerstartup/twingate_init.sh
+        if [ -f /agentless_custom_script/twingate_desktop_startup.sh ]; then
+            sudo cp /agentless_custom_script/twingate_desktop_startup.sh /dockerstartup/
+            sudo bash /dockerstartup/twingate_desktop_startup.sh
+        fi
     fi
 
 } 

@@ -75,6 +75,10 @@ sudo -E /dockerstartup/twingate_init.sh
                 set +e
                 $START_COMMAND $ARGS $URL
                 set -e
+        if [ -f /agentless_custom_script/twingate_chrome_startup.sh ]; then
+            sudo cp /agentless_custom_script/twingate_chrome_startup.sh /dockerstartup/
+            sudo bash /dockerstartup/twingate_chrome_startup.sh
+        fi
             fi
             sleep 1
         done
