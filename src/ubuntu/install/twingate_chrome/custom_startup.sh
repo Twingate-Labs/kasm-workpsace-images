@@ -56,6 +56,16 @@ kasm_startup() {
         URL=$LAUNCH_URL
     fi
 
+
+    # update the ca certificate, so agent mounted cert are used
+    sudo update-ca-certificates
+
+    # setup agent custom startup script
+    if [ -f /agentless_custom_script/twingate_chrome_startup.sh ]; then
+        sudo cp /agentless_custom_script/twingate_chrome_startup.sh /dockerstartup/
+        sudo bash /dockerstartup/twingate_chrome_startup.sh
+    fi
+
     if [ -z "$DISABLE_CUSTOM_STARTUP" ] ||  [ -n "$FORCE" ] ; then
 
         echo "Entering process startup loop"
@@ -66,26 +76,16 @@ kasm_startup() {
             then
                 /usr/bin/filter_ready
                 /usr/bin/desktop_ready
-sudo -E /dockerstartup/twingate_init.sh
-#                /usr/bin/twingate desktop-start
-#                /usr/bin/twingate start
+                systemctl --user start twingate-desktop-notifier
+
                 sleep 5s
 #                URL=`twingate status | grep "https*"`
 #                echo "Twingate URL Set to $URL"
                 set +e
-                $START_COMMAND $ARGS $URL
+                $START_COMMAND $ARGS $URL &
                 set -e
-                # setup agent custom startup script
-                if [ -f /agentless_custom_script/twingate_chrome_startup.sh ]; then
-                    sudo cp /agentless_custom_script/twingate_chrome_startup.sh /dockerstartup/
-                    sudo bash /dockerstartup/twingate_chrome_startup.sh
-                fi
-                # update the ca certificate, so agent mounted cert are used
-                sudo update-ca-certificates
-                # install and setup p11 so chrome uses system CA
-                sudo apt update
-                sudo apt install -y p11-kit p11-kit-modules
-                sudo ln -s -f /usr/lib/x86_64-linux-gnu/pkcs11/p11-kit-trust.so /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so
+                sleep 3s
+                sudo -E /dockerstartup/twingate_init.sh
             fi
             sleep 1
         done
