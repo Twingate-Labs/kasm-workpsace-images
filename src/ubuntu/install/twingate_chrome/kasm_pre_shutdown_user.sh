@@ -81,7 +81,8 @@ if [ ! -z "$KASM_PROFILE_LDR" ]; then
         log "Profile sync not available"
     else
         log "Packing and uploading user profile to object storage."
-        twingate stop
+        sudo twingate stop
+        sleep 5
         PROFILE_SYNC_STATUS=1
         if [[ $DEBUG == true ]]; then
             OUTPUT=$(http_proxy="" https_proxy="" /usr/bin/kasm-profile-sync --upload /home/kasm-user --insecure --filter "${KASM_PROFILE_FILTER}" --remote ${KASM_API_HOST} --port ${KASM_API_PORT} -c ${KASM_PROFILE_CHUNK_SIZE} --token ${KASM_API_JWT} --verbose 2>&1 )
