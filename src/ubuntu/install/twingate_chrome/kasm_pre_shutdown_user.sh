@@ -21,6 +21,9 @@ trap cleanup 2 6 9 15
 
 log "Executing kasm_pre_shutdown_user.sh" "INFO"
 
+log "Stopping Twingate"
+twingate stop
+
 PAUSE_ON_EXIT="false"
 if [ -z ${KASM_PROFILE_CHUNK_SIZE} ]; then
   KASM_PROFILE_CHUNK_SIZE=100000
@@ -81,10 +84,6 @@ if [ ! -z "$KASM_PROFILE_LDR" ]; then
         log "Profile sync not available"
     else
         log "Packing and uploading user profile to object storage."
-        log "Stopping Twingate"
-        sudo twingate stop
-        sleep 5
-        log "Stopped Twingate"
         PROFILE_SYNC_STATUS=1
         if [[ $DEBUG == true ]]; then
             OUTPUT=$(http_proxy="" https_proxy="" /usr/bin/kasm-profile-sync --upload /home/kasm-user --insecure --filter "${KASM_PROFILE_FILTER}" --remote ${KASM_API_HOST} --port ${KASM_API_PORT} -c ${KASM_PROFILE_CHUNK_SIZE} --token ${KASM_API_JWT} --verbose 2>&1 )
