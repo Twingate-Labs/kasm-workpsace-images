@@ -81,11 +81,11 @@ kasm_startup() {
                 sleep 5s
 #                URL=`twingate status | grep "https*"`
 #                echo "Twingate URL Set to $URL"
+                sudo -E /dockerstartup/twingate_init.sh
                 set +e
                 $START_COMMAND $ARGS $URL
                 set -e
                 sleep 3s
-                sudo -E /dockerstartup/twingate_init.sh
             fi
             sleep 1
         done
