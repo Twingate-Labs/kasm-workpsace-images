@@ -61,20 +61,21 @@ kasm_startup() {
 
         # update the ca certificate, so agent mounted cert are used
         sudo update-ca-certificates
-        # install and setup p11 so chrome uses system CA
-        sudo apt update
-        sudo apt install -y p11-kit p11-kit-modules
+        # setup p11 so chrome uses system CA
         sudo ln -s -f /usr/lib/x86_64-linux-gnu/pkcs11/p11-kit-trust.so /usr/lib/x86_64-linux-gnu/nss/libnssckbi.so
 
-        /usr/bin/filter_ready
-        /usr/bin/desktop_ready
         systemctl --user start twingate-desktop-notifier
         sudo -E /dockerstartup/twingate_init.sh
+
         # setup agent custom startup script
         if [ -f /agentless_custom_script/twingate_desktop_startup.sh ]; then
             sudo cp /agentless_custom_script/twingate_desktop_startup.sh /dockerstartup/
             sudo bash /dockerstartup/twingate_desktop_startup.sh
         fi
+
+        /usr/bin/filter_ready
+        /usr/bin/desktop_ready
+
     fi
 
 } 
