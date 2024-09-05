@@ -1,5 +1,5 @@
 # Attempt to set the username to the kasm username
-USERNAME=${KASM_USER%%@*}
+USERNAME=${KASM_USER%%@*g}
 
 # Make the username posix compliant
 USERNAME=$(echo "$USERNAME" | sed -r 's#[^a-zA-Z0-9\._\-]#_#g')
