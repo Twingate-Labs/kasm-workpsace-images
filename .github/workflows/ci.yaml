@@ -42,11 +42,13 @@ jobs:
 
       - name: Put current date into a variable
         run: |
-          NOW=$(date "+%Y%m%d")
+          
           echo "NOW=$NOW" >> $env:GITHUB_ENV
           
       - name: Build image
-        run: docker build . --file ${{ matrix.dockerfile }} --tag ${{ matrix.image }}:dev --tag ${{ matrix.image }}:latest --tag ${{ matrix.image }}:${{ env.NOW }}
+        run: |
+          NOW=$(date "+%Y%m%d")
+          docker build . --file ${{ matrix.dockerfile }} --tag ${{ matrix.image }}:dev --tag ${{ matrix.image }}:latest --tag ${{ matrix.image }}:$NOW
 
       - name: Build image
         run: docker image ls
