@@ -18,9 +18,9 @@ jobs:
       matrix:
         include:
           - dockerfile: ./dockerfile-kasm-chrome
-            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-chrome-github-test:dev
+            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-chrome-github-test
           - dockerfile: ./dockerfile-kasm-ubuntu-jammy-desktop
-            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-desktop-github-test:dev
+            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-desktop-github-test
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v3"
@@ -39,12 +39,17 @@ jobs:
       - name: "Docker auth"
         run: |-
           gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
+      - name: Put current date into a variable
+        run: |
+          $NOW=& Get-Date -format yyyy-MM-dd
+          echo "NOW=$NOW" >> $env:GITHUB_ENV
           
       - name: Build image
-        run: docker build . --file ${{ matrix.dockerfile }} --tag ${{ matrix.image }}
+        run: docker build . --file ${{ matrix.dockerfile }} --tag ${{ matrix.image }}:dev --tag ${{ matrix.image }}:latest --tag ${{ matrix.image }}:${{ env.NOW }}
 
       - name: Build image
         run: docker image ls
 
 #      - name: Push image
-#        run: docker push ${{ env.GAR_LOCATION }}
+#        run: docker push ${{ matrix.image }} --all-tags
