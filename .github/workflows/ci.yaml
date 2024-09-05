@@ -42,7 +42,6 @@ jobs:
           
       - name: Build image
         run: docker build . --file ${{ matrix.dockerfile }} --tag ${{ matrix.image }}
-        working-directory: WORKING_DIRECTORY
 
       - name: Build image
         run: docker image ls
