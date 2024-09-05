@@ -42,7 +42,7 @@ jobs:
 
       - name: Put current date into a variable
         run: |
-          $NOW=& Get-Date -format yyyy-MM-dd
+          NOW=$(date "+%Y%m%d")
           echo "NOW=$NOW" >> $env:GITHUB_ENV
           
       - name: Build image
