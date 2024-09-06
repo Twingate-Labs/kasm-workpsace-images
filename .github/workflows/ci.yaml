@@ -51,7 +51,9 @@ jobs:
           docker build . --file ${{ matrix.dockerfile }} --tag ${{ matrix.image }}:dev --tag ${{ matrix.image }}:latest --tag ${{ matrix.image }}:$NOW
 
       - name: Build image
-        run: docker image ls
+        run: |
+          docker image ls
+          echo ${{ matrix.image }}
 
 #      - name: Push image
 #        run: docker push ${{ matrix.image }} --all-tags
