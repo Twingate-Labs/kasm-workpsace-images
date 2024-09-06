@@ -1,9 +1,9 @@
-name: deploy-docs
-#on:
-#  schedule:
-#    - cron: "0 0 * * *"
+name: deploy
+on:
+  schedule:
+    - cron: "0 0 * * *"
 
-on: [workflow_dispatch]
+#on: [workflow_dispatch]
 
 
 env:
