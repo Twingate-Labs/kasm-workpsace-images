@@ -50,10 +50,10 @@ jobs:
           NOW=$(date "+%Y%m%d")
           docker build . --file ${{ matrix.dockerfile }} --tag ${{ matrix.image }}:dev --tag ${{ matrix.image }}:latest --tag ${{ matrix.image }}:$NOW
 
-      - name: Build image
-        run: |
-          docker image ls
-          echo ${{ matrix.image }}
+#      - name: Build image
+#        run: |
+#          docker image ls
+#          echo ${{ matrix.image }}
 
-#      - name: Push image
-#        run: docker push ${{ matrix.image }} --all-tags
+      - name: Push image
+        run: docker push ${{ matrix.image }} --all-tags
