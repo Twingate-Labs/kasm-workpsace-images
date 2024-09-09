@@ -23,6 +23,7 @@ COPY ./src/ubuntu/install/twingate_desktop/kasm_post_run_root.sh  $STARTUPDIR/ka
 RUN chmod +x $STARTUPDIR/twingate_init.sh && \
     chmod +x $STARTUPDIR/custom_startup.sh && \
     chmod +x $STARTUPDIR/kasm_pre_shutdown_user.sh && \
+    chmod +x $STARTUPDIR/kasm_post_run_root.sh && \
     chmod +x /usr/bin/systemctl && \
     # echo "kasm-user ALL= NOPASSWD: /usr/bin/twingate" >> /etc/sudoers && \
     echo "kasm-user ALL=(ALL) NOPASSWD: /dockerstartup/twingate_init.sh" >> /etc/sudoers && \
