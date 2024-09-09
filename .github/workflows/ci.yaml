@@ -17,9 +17,9 @@ jobs:
       matrix:
         include:
           - dockerfile: ./dockerfile-kasm-chrome
-            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-chrome-github-test
+            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-chrome
           - dockerfile: ./dockerfile-kasm-ubuntu-jammy-desktop
-            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-desktop-github-test
+            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-desktop
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v3"
