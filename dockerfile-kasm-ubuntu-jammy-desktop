@@ -19,6 +19,7 @@ COPY ./src/ubuntu/install/twingate_desktop/twingate_init.sh $STARTUPDIR/twingate
 COPY ./src/ubuntu/install/twingate_desktop/systemctl3.py /usr/bin/systemctl
 COPY ./src/ubuntu/install/twingate_desktop/kasm_pre_shutdown_user.sh $STARTUPDIR/kasm_pre_shutdown_user.sh
 COPY ./src/ubuntu/install/twingate_desktop/generate_container_user $STARTUPDIR/generate_container_user
+COPY ./src/ubuntu/install/twingate_desktop/kasm_post_run_root.sh  $STARTUPDIR/kasm_post_run_root.sh
 RUN chmod +x $STARTUPDIR/twingate_init.sh && \
     chmod +x $STARTUPDIR/custom_startup.sh && \
     chmod +x $STARTUPDIR/kasm_pre_shutdown_user.sh && \
