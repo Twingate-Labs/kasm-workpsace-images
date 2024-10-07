@@ -12,6 +12,7 @@ sudo apt-get update  && \
 sudo apt-get install openjdk-8-jre -y && \
 wget https://github.com/karakun/OpenWebStart/releases/download/v1.10.1/OpenWebStart_linux_1_10_1.deb && \
 sudo dpkg -i OpenWebStart_linux_1_10_1.deb && \
+curl https://tex-int.360t.com/tex.jnlp > /home/kasm-user/Desktop/tex.jnlp && \
 sudo rm -rf /var/lib/apt/lists/*
 
 # Userspace Runtime
