@@ -20,6 +20,8 @@ jobs:
             image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-chrome
           - dockerfile: ./dockerfile-kasm-ubuntu-jammy-desktop
             image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-desktop
+          - dockerfile: ./dockerfile-kasm-ubuntu-jammy-desktop-javaapp
+            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-desktop-javaapp
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v3"
