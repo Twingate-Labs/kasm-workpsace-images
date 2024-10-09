@@ -19,6 +19,7 @@ mkdir -p /home/kasm-user/.config/icedtea-web && \
 #echo "ows.install4j.propertyUpdate=1728317121745" >> deployment.properties   && \
 #echo "ows.jvm.manager.updateStrategy=DO_NOTHING_ON_LOCAL_MATCH" >> deployment.properties   && \
 sudo unzip /home/kasm-default-profile/text-int.zip -d /home/kasm-default-profile/ && \
+sudo chmod 777 -R /home/kasm-default-profile/ && \
 sudo rm -rf /var/lib/apt/lists/* && \
 sudo rm /home/kasm-default-profile/text-int.zip
 
