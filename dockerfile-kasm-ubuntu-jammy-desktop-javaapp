@@ -10,7 +10,7 @@ WORKDIR $HOME
 RUN sudo apt-get update  && \
 sudo apt-get install openjdk-8-jre -y && \
 wget https://github.com/karakun/OpenWebStart/releases/download/v1.10.1/OpenWebStart_linux_1_10_1.deb && \
-wget https://storage.googleapis.com/twingate-labs/agentless/customers/bitpanda/text-int.zip -O  /home/kasm-default-profile/text-int.zip && \
+wget https://storage.googleapis.com/twingate-labs/agentless/customers/javaapp/text-int.zip -O  /home/kasm-default-profile/text-int.zip && \
 sudo dpkg -i OpenWebStart_linux_1_10_1.deb && \
 sudo unzip /home/kasm-default-profile/text-int.zip -d /home/kasm-default-profile/ && \
 sudo chown -R root:root /home/kasm-default-profile   && \
