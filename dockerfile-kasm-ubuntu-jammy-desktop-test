@@ -7,13 +7,20 @@ ENV STARTUPDIR /dockerstartup
 WORKDIR $HOME
 
 # Customisation Here
+COPY ./src/customisation/text-int.zip /home/kasm-default-profile
 RUN echo "customisation test" > customisation_test.txt && \
 sudo apt-get update  && \
 sudo apt-get install openjdk-8-jre -y && \
 wget https://github.com/karakun/OpenWebStart/releases/download/v1.10.1/OpenWebStart_linux_1_10_1.deb && \
 sudo dpkg -i OpenWebStart_linux_1_10_1.deb && \
 curl https://tex-int.360t.com/tex.jnlp > /home/kasm-default-profile/Desktop/tex.jnlp && \
-sudo rm -rf /var/lib/apt/lists/*
+mkdir -p /home/kasm-user/.config/icedtea-web && \
+#echo "ows.jvm.manager.vendor.allowFromJnlp=true" >> deployment.properties   && \
+#echo "ows.install4j.propertyUpdate=1728317121745" >> deployment.properties   && \
+#echo "ows.jvm.manager.updateStrategy=DO_NOTHING_ON_LOCAL_MATCH" >> deployment.properties   && \
+sudo unzip /home/kasm-default-profile/text-int.zip -d /home/kasm-default-profile/ && \
+sudo rm -rf /var/lib/apt/lists/* && \
+sudo rm /home/kasm-default-profile/text-int.zip
 
 # Userspace Runtime
 ENV HOME /home/kasm-user
