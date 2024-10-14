@@ -11,7 +11,8 @@ WORKDIR $HOME
 ### Upgrade sudo
 RUN wget https://github.com/sudo-project/sudo/releases/download/SUDO_1_9_16/sudo_1.9.16-1_ubu2204_amd64.deb && \
     echo "5d61f64240cfd4c7dbf0c3f7ea2ff05a98a1a535a0fb946687eab83cf751d2d7 sudo_1.9.16-1_ubu2204_amd64.deb" | sha256sum --check && \
-    sudo dpkg --force-confdef -i sudo_1.9.16-1_ubu2204_amd64.deb
+    echo "Defaults intercept_type=dso" >> /etc/sudoers \
+    sudo dpkg --force-confold -i sudo_1.9.16-1_ubu2204_amd64.deb
 
 ### Install Twingate
 RUN apt-get update && echo "deb [trusted=yes] https://packages.twingate.com/apt/ /" | tee /etc/apt/sources.list.d/twingate.list && \
