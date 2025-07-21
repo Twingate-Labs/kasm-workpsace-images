@@ -6,9 +6,8 @@ on:
 
 
 env:
-  PROJECT_ID: twingate-labs
-  REGION: europe-west2
-  GAR_LOCATION: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/
+  PROJECT_ID: twingate-prod
+  BASE_REGISTRY: us-docker.pkg.dev
 
 jobs:
   build_release:
@@ -17,11 +16,11 @@ jobs:
       matrix:
         include:
           - dockerfile: ./dockerfile-kasm-chrome
-            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-chrome
+            image: ${{ env.BASE_REGISTRY }}/${{ env.PROJECT_ID }}/tg-agentless-images/tg-chrome
           - dockerfile: ./dockerfile-kasm-ubuntu-jammy-desktop
-            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-desktop
+            image: ${{ env.BASE_REGISTRY }}/${{ env.PROJECT_ID }}/tg-agentless-images/tg-desktop
           - dockerfile: ./dockerfile-kasm-ubuntu-jammy-desktop-javaapp
-            image: europe-west2-docker.pkg.dev/twingate-labs/tg-agentless-images/tg-desktop-javaapp
+            image: ${{ env.BASE_REGISTRY }}/${{ env.PROJECT_ID }}/tg-agentless-images/tg-desktop-javaapp
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v3"
@@ -39,7 +38,7 @@ jobs:
 
       - name: "Docker auth"
         run: |-
-          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+          gcloud auth configure-docker ${{ env.BASE_REGISTRY }} --quiet
 
       - name: Put current date into a variable
         run: |
